@@ -377,6 +377,13 @@ a {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden; /* Prevent content overflow */
   position: relative;
+  opacity: 0; /* Initially hidden */
+  transform: translateY(30px); /* Start from below */
+}
+
+.program-card.animated {
+  opacity: 1;
+  transform: translateY(0); /* Reset position when animated */
 }
 
 .program-card h3 {
@@ -417,18 +424,6 @@ a {
 .program-btn:hover {
   background-color: #e60000;
   transform: translateY(-2px); /* Subtle lift effect */
-}
-
-/* Animation Effects for Program Cards */
-.program-card[data-animation="fade-in-up"] {
-  opacity: 0;
-  transform: translateY(30px); /* Start slightly below */
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.program-card[data-animation="fade-in-up"].animated {
-  opacity: 1;
-  transform: translateY(0); /* Move to the original position */
 }
 
 /* Responsive Adjustments */
@@ -542,27 +537,6 @@ a {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Enhance shadow on hover */
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .results-section h2 {
-    font-size: 2rem; /* Adjust title size for smaller screens */
-  }
-
-  .results-section p {
-    font-size: 1rem; /* Adjust paragraph size */
-  }
-
-  .results-gallery {
-    gap: 1.5rem; /* Reduce gap between items */
-  }
-
-  .result-item {
-    max-width: 100%; /* Use full width for smaller screens */
-    aspect-ratio: 3 / 4; /* Maintain the aspect ratio */
-    border-radius: 10px; /* Slightly reduce radius for smaller screens */
-  }
-}
-
 /* Notification Styles */
 .notification {
   font-size: 1.1rem; /* Slightly larger text for readability */
@@ -587,7 +561,7 @@ a {
   opacity: 1; /* Fully visible */
   transform: translateY(0); /* Reset position */
 }
-/* Add a fade-in animation */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -599,11 +573,23 @@ a {
   }
 }
 
-/* Responsive Notification */
 @media screen and (max-width: 768px) {
-  .notification {
-    font-size: 1rem; /* Adjust font size for smaller screens */
-    padding: 0.6rem 1rem; /* Adjust padding */
+  .results-section h2 {
+    font-size: 2rem; /* Adjust title size for smaller screens */
+  }
+
+  .results-section p {
+    font-size: 1rem; /* Adjust paragraph size */
+  }
+
+  .results-gallery {
+    gap: 1.5rem; /* Reduce gap between items */
+  }
+
+  .result-item {
+    max-width: 100%; /* Use full width for smaller screens */
+    aspect-ratio: 3 / 4; /* Maintain the aspect ratio */
+    border-radius: 10px; /* Slightly reduce radius for smaller screens */
   }
 }
 
@@ -627,6 +613,8 @@ a {
   margin-bottom: 2rem;
   text-transform: uppercase; /* Make title more prominent */
   letter-spacing: 1px;
+  opacity: 0; /* Make title hidden initially for AOS animation */
+  transition: opacity 0.5s ease;
 }
 
 .faq-item {
@@ -635,6 +623,7 @@ a {
   border-radius: 8px; /* Rounded corners */
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animations */
+  opacity: 0; /* Make FAQ items hidden initially for AOS animation */
 }
 
 .faq-item:hover {
@@ -710,83 +699,211 @@ a {
   }
 }
 
-  
-/* Contact Section Styles */
+/* General Contact Section Styles */
 .contact-section {
-    background-color: #1c1c1c;
-    color: #fff;
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-  
+  background-color: #121212; /* Dark background for contrast */
+  color: #fff;
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  animation: fadeInUp 1s ease-in-out; /* AOS fade-in-up effect */
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem; /* Add padding for smaller screens */
+}
+
+/* Header and Paragraph */
+.contact-section h2 {
+  font-size: 2.5rem;
+  color: #ff0000; /* Highlight heading with red */
+  margin-bottom: 1.5rem;
+  text-transform: uppercase; /* Add uppercase for emphasis */
+  letter-spacing: 1px;
+  animation: fadeInUp 1s ease-out; /* AOS fade-in-up animation */
+}
+
+.contact-section p {
+  font-size: 1.2rem;
+  color: #ccc; /* Softer text color for readability */
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  animation: fadeInUp 1s ease-out 0.2s; /* Slight delay for smooth animation */
+}
+
+/* Social Media Section */
+.social-media {
+  margin-bottom: 2rem;
+  animation: fadeInUp 1s ease-out 0.4s;
+}
+
+.social-media h3 {
+  font-size: 1.8rem;
+  color: #ff0000;
+  margin-bottom: 1rem;
+  animation: fadeInUp 1s ease-out 0.4s;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.social-icon {
+  color: #fff;
+  font-size: 2rem;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 1s ease-out 0.6s;
+}
+
+.social-icon:hover {
+  color: #ff0000;
+  transform: scale(1.1);
+}
+
+.social-icon span {
+  display: block;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Contact Form Section */
+.contact-form-container {
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+  animation: fadeInUp 1s ease-out 0.8s;
+}
+
+.contact-form-container h3 {
+  font-size: 1.8rem;
+  color: #ff0000;
+  margin-bottom: 1.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #121212;
+  color: #fff;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s ease;
+  animation: fadeInUp 1s ease-out 1s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #ff0000;
+}
+
+.contact-btn {
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 1s ease-out 1.2s;
+}
+
+.contact-btn:hover {
+  background-color: #e60000;
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+/* Responsive Design for Mobile Devices */
+@media screen and (max-width: 768px) {
   .contact-container {
-    max-width: 800px;
-    margin: 0 auto;
+    padding: 0 1rem;
   }
-  
+
   .contact-section h2 {
     font-size: 2rem;
-    color: #ff0000;
-    margin-bottom: 1rem;
   }
-  
+
   .contact-section p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-  }
-  
-  .contact-form {
-    display: grid;
-    gap: 1.5rem;
-  }
-  
-  .form-group {
-    text-align: right; /* Align labels and inputs for Hebrew text */
-  }
-  
-  .form-group label {
-    display: block;
     font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: #fff;
   }
-  
+
+  .social-icons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-form-container {
+    padding: 1.5rem;
+  }
+
   .form-group input,
   .form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #333;
-    border-radius: 5px;
-    background: #121212;
-    color: #fff;
     font-size: 1rem;
   }
-  
-  .form-group input::placeholder,
-  .form-group textarea::placeholder {
-    color: #aaa;
-  }
-  
-  .form-group input:focus,
-  .form-group textarea:focus {
-    border-color: #ff0000;
-    outline: none;
-  }
-  
+
   .contact-btn {
-    background-color: #ff0000;
-    color: #fff;
-    border: none;
-    padding: 0.75rem 2rem;
-    font-size: 1.1rem;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
   }
-  
-  .contact-btn:hover {
-    background-color: #e60000;
+}
+
+/* Advanced Hover and Focus Effects */
+.contact-btn:focus,
+.social-icon:focus {
+  outline: 2px solid #ff0000; /* Add outline on focus */
+  outline-offset: 2px;
+}
+
+.social-icon:active,
+.contact-btn:active {
+  transform: scale(0.95); /* Slight shrink effect when clicked */
+}
+
+/* AOS Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   
 /* Footer Styles */
 .footer {
