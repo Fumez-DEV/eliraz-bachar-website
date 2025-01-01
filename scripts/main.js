@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroButton = document.querySelector('.hero-btn');
   const contactSection = document.querySelector('#contact');
   heroButton?.addEventListener('click', () => {
-    alert('תודה על ההתעניינות! ניצור איתך קשר בהקדם.');
     contactSection?.scrollIntoView({ behavior: 'smooth' });
   });
 
