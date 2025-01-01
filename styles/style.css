@@ -21,7 +21,7 @@ a {
 
 /* Navbar Styles */
 .navbar {
-  position: fixed;
+  position: fixed; /* Ensure the navbar stays fixed at the top */
   top: 0;
   width: 100%;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(20, 20, 20, 0.9)); /* Modern gradient background */
@@ -95,14 +95,6 @@ a {
     height: 50px; /* Reduce logo size on smaller screens */
     width: 50px;
   }
-}
-
-/* Sticky Effect on Scroll */
-.navbar.scrolled {
-  background: rgba(0, 0, 0, 0.85); /* Slightly darker background when scrolled */
-  padding: 0.7rem 1.5rem;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* More prominent shadow */
-  transition: background 0.3s ease, padding 0.3s ease;
 }
 
 
